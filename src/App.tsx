@@ -1,3 +1,4 @@
+import { Gate } from "./components/Gate";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Problem } from "./components/Problem";
@@ -9,7 +10,7 @@ import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
-    <>
+    <Gate>
       <div className="grain"></div>
       <Header />
       <Hero />
@@ -19,6 +20,6 @@ export default function App() {
       <Dashboard />
       <TrustWhyContact />
       <Footer />
-    </>
+    </Gate>
   );
 }

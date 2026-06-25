@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 import { Reveal, EASE } from "../utils";
+import { BiotaMark } from "./Logo";
 
 /* ------------------------------------------------------------------ *
  * Section 04 — Dashboard & rapportering
@@ -452,15 +453,8 @@ function ViewBody({ view }: { view: ViewId }): ReactNode {
 }
 
 function LogoMark() {
-  // small sound-bars mark, echoing the site header but tuned for a dark sidebar
-  return (
-    <svg width="20" height="20" viewBox="0 0 26 28" fill="none" aria-hidden="true" className="block shrink-0">
-      <rect x="0" y="16" width="5" height="12" fill="rgba(255,255,255,0.45)" />
-      <rect x="7" y="10" width="5" height="18" fill="rgba(255,255,255,0.65)" />
-      <rect x="14" y="4" width="5" height="24" fill="#ffffff" />
-      <rect x="21" y="0" width="5" height="28" fill="var(--color-rust)" />
-    </svg>
-  );
+  // compact reverse mark, tuned to stay crisp at this size on the dark sidebar
+  return <BiotaMark form="compact" variant="reverse" width={22} height={22} className="block shrink-0" />;
 }
 
 function useMediaQuery(query: string) {

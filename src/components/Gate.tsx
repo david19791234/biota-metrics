@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { EASE } from "../utils";
+import { BiotaMark } from "./Logo";
 
 /* Soft access gate for the stealth phase. NOTE: this is a client-side barrier
    only — it keeps casual visitors out, but the PIN and the site live in the JS
@@ -29,14 +30,7 @@ export function Gate({ children }: { children: ReactNode }) {
 }
 
 function GateLogo() {
-  return (
-    <svg width="30" height="32" viewBox="0 0 26 28" fill="none" aria-hidden="true" className="block">
-      <rect x="0" y="16" width="5" height="12" fill="var(--color-moss)" />
-      <rect x="7" y="10" width="5" height="18" fill="var(--color-moss-deep)" />
-      <rect x="14" y="4" width="5" height="24" fill="var(--color-ink)" />
-      <rect x="21" y="0" width="5" height="28" fill="var(--color-rust)" />
-    </svg>
-  );
+  return <BiotaMark width={142} height={100} className="block" />;
 }
 
 function AccessScreen({ onUnlock }: { onUnlock: () => void }) {
@@ -105,7 +99,7 @@ function AccessScreen({ onUnlock }: { onUnlock: () => void }) {
         transition={{ duration: 0.5, ease: EASE }}
         className="w-full max-w-[360px] text-center"
       >
-        <div className="flex items-center justify-center gap-2.5 mb-10">
+        <div className="flex flex-col items-center gap-4 mb-10">
           <GateLogo />
           <span className="font-serif font-medium text-[1.35rem] tracking-tight text-ink">Biota Metrics</span>
         </div>

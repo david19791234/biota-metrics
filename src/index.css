@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F6F6F4;
+  --color-paper-sub: #EBEBE9;
+  --color-paper-mute: #DCDCDA;
+  --color-ink: #111111;
+  --color-ink-soft: #444444;
+  --color-ink-faint: #777777;
+  --color-moss: #2E382D;
+  --color-moss-deep: #1A2118;
+  --color-rust: #85402E;
+  --color-coach: #232C21;
+  --color-line: rgba(17,17,17,0.18);
+  --color-line-soft: rgba(17,17,17,0.08);
+
+  --font-serif: "Newsreader", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 480px) {
+  .wrap { padding: 0 22px; }
+  body { font-size: 16px; }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Clears the fixed header so anchored sections don't land hidden beneath it.
+     Must match HEADER_OFFSET in utils.tsx (smoothScroll). */
+  scroll-padding-top: 80px;
+}
+
+/* Accessibility: honour reduced-motion by collapsing animation/transition to a
+   near-instant change, while keeping the colour/tint end-states intact so hover
+   still communicates. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

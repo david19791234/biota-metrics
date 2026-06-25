@@ -110,9 +110,6 @@ function AccessScreen({ onUnlock }: { onUnlock: () => void }) {
           <span className="font-serif font-medium text-[1.35rem] tracking-tight text-ink">Biota Metrics</span>
         </div>
 
-        <span className="font-mono text-xs tracking-[0.16em] uppercase text-moss font-medium mb-3 block">
-          Stealth
-        </span>
         <h1 className="font-serif font-medium text-[1.6rem] leading-tight tracking-tight text-ink mb-2.5">
           Indtast adgangskode
         </h1>

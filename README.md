@@ -2,7 +2,7 @@
 
 Marketing-site for **Biota Metrics** — standardiseret monitorering af biodiversitet i naturgenopretningsprojekter.
 
-Statisk side bygget med React 19, Vite 6 og Tailwind CSS v4. Live: https://david19791234.github.io/biota-metrics/
+Statisk side bygget med React 19, Vite 6 og Tailwind CSS v4. Live: https://biotametrics.com
 
 ## Udvikling
 

@@ -3,11 +3,10 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(({ command }) => {
+export default defineConfig(() => {
   return {
-    // Served from https://david19791234.github.io/biota-metrics/ on GitHub Pages,
-    // so production assets need that sub-path. Dev/preview stays at '/'.
-    base: command === 'build' ? '/biota-metrics/' : '/',
+    // Served at the root of the custom domain https://biotametrics.com/.
+    base: '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

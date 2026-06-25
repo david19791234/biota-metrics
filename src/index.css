@@ -54,9 +54,10 @@ body {
 
 html {
   scroll-behavior: smooth;
-  /* Clears the fixed header so anchored sections don't land hidden beneath it.
-     Must match HEADER_OFFSET in utils.tsx (smoothScroll). */
-  scroll-padding-top: 80px;
+  /* Clears the fixed (docked) header (~56px) with a little air so anchored
+     sections don't land flush beneath it. Must match HEADER_OFFSET in
+     utils.tsx (smoothScroll). */
+  scroll-padding-top: 70px;
 }
 
 /* Accessibility: honour reduced-motion by collapsing animation/transition to a

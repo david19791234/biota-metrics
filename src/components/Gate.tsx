@@ -30,7 +30,7 @@ export function Gate({ children }: { children: ReactNode }) {
 }
 
 function GateLogo() {
-  return <BiotaMark width={142} height={100} className="block" />;
+  return <BiotaMark width={150} height={106} className="block" />;
 }
 
 function AccessScreen({ onUnlock }: { onUnlock: () => void }) {

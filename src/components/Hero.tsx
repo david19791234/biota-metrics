@@ -2,8 +2,10 @@ import { motion } from "motion/react";
 import { EASE, Reveal, smoothScroll } from "../utils";
 
 export function Hero() {
+  // Top padding clears the fixed flower masthead (≈86px mobile / 136px desktop)
+  // plus a harmonious gap = the logo's top padding × φ (≈36 / 64).
   return (
-    <section className="pt-[92px] md:pt-[160px] pb-12 md:pb-16 relative">
+    <section className="pt-[122px] md:pt-[200px] pb-12 md:pb-16 relative">
       <div className="wrap">
         <div className="grid grid-cols-1 md:grid-cols-[1.12fr_0.88fr] gap-8 md:gap-16 items-center">
           <div>

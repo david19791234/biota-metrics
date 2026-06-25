@@ -1,22 +1,22 @@
 import type { SVGProps } from "react";
 
 /**
- * Biota Metrics brand mark — stems of rising height crowned by seed heads,
- * the tallest in rust. Two forms share one DNA:
+ * Biota Metrics brand mark — five stems of rising height, each crowned by a
+ * hexagonal seed-head flower, the tallest in rust on the "reference line". The
+ * heights follow one rhythm: a rising curve, organic rather than mechanical.
  *
- *  - form="full"    five stems, each topped by a hexagonal seed-head cluster.
- *                   The expressive hero mark; reads from ~100px upward.
- *  - form="compact" three stems with solid heads and bolder strokes. Stays
- *                   crisp down to favicon sizes where the cluster would muddy.
+ *  - form="full"     the five-flower mark (the brand mark / "summit" mark).
+ *                    Reads as flowers from ~70px upward; the petals soften below.
+ *  - form="compact"  three solid seed-head dots — stays crisp at favicon size,
+ *                    used docked in the header and on the dark dashboard rail.
  *
- * Three colourways via `variant`:
- *  - "color"   on light surfaces (moss + bronze + rust)
- *  - "reverse" on dark surfaces  (cream + warm gold + warm rust)
- *  - "mono"    inherits currentColor (single-ink contexts, print)
+ * Colourways via `variant`: "color" (light surfaces), "reverse" (dark surfaces),
+ * "mono" (inherits currentColor).
  */
 
 type Variant = "color" | "reverse" | "mono";
 type Form = "full" | "compact";
+type Slot = "stem" | "bronze" | "rust";
 
 const PALETTE: Record<Variant, { stem: string; bronze: string; rust: string }> = {
   color: { stem: "#2E382D", bronze: "#8A6A30", rust: "#85402E" },
@@ -24,9 +24,7 @@ const PALETTE: Record<Variant, { stem: string; bronze: string; rust: string }> =
   mono: { stem: "currentColor", bronze: "currentColor", rust: "currentColor" },
 };
 
-type Slot = "stem" | "bronze" | "rust";
-
-// Six points on a flat-sided hexagon, offset from the head centre.
+// Six petals on a flat-sided hexagon around the seed-head centre.
 const HEAD_RING = [
   [7.2, 0],
   [3.6, 6.24],
@@ -36,8 +34,10 @@ const HEAD_RING = [
   [3.6, -6.24],
 ] as const;
 
-// Full mark: stem x, stem top (head centre sits 7 above), head colour slot.
-// The rust-crowned tallest stem is drawn slightly larger.
+// Full mark. viewBox 0 0 250 176; stems end at the bottom edge (y=176 = ground
+// line), so the mark baseline-aligns to the wordmark by bottom-aligning its box.
+// Heights rise with an organic dip (the "rhythm"); the head centre sits 7 above
+// the stem top. The rust flower (tallest, rightmost) is drawn a touch larger.
 type FullStem = { x: number; top: number; slot: Slot; big?: boolean };
 const FULL_STEMS: FullStem[] = [
   { x: 13, top: 132, slot: "stem" },
@@ -46,14 +46,17 @@ const FULL_STEMS: FullStem[] = [
   { x: 181, top: 52, slot: "bronze" },
   { x: 237, top: 20, slot: "rust", big: true },
 ];
+const FULL_BASELINE = 176;
 
-// Compact mark: an ascending trio with solid heads, the tallest in rust.
+// Compact mark. viewBox 0 0 100 100; stems end at the box bottom (y=100) so it
+// baseline-aligns by the same rule.
 type CompactStem = { x: number; top: number; slot: Slot; r: number };
 const COMPACT_STEMS: CompactStem[] = [
-  { x: 18, top: 56, slot: "stem", r: 8.5 },
-  { x: 50, top: 36, slot: "bronze", r: 8.5 },
+  { x: 18, top: 60, slot: "stem", r: 8.5 },
+  { x: 50, top: 38, slot: "bronze", r: 8.5 },
   { x: 82, top: 16, slot: "rust", r: 9.5 },
 ];
+const COMPACT_BASELINE = 100;
 
 type BiotaMarkProps = {
   variant?: Variant;
@@ -73,12 +76,10 @@ export function BiotaMark({
     slot === "rust" ? c.rust : slot === "bronze" ? c.bronze : c.stem;
 
   const isCompact = form === "compact";
-  const viewBox = isCompact ? "0 0 100 100" : "0 0 250 176";
-  const baseline = isCompact ? 88 : 176;
 
   return (
     <svg
-      viewBox={viewBox}
+      viewBox={isCompact ? "0 0 100 100" : "0 0 250 176"}
       fill="none"
       role={title ? "img" : undefined}
       aria-hidden={title ? undefined : true}
@@ -89,36 +90,22 @@ export function BiotaMark({
       {isCompact
         ? COMPACT_STEMS.map((s) => (
             <g key={s.x}>
-              <line
-                x1={s.x}
-                y1={s.top}
-                x2={s.x}
-                y2={baseline}
-                stroke={c.stem}
-                strokeWidth={5}
-                strokeLinecap="round"
-              />
+              <line x1={s.x} y1={s.top} x2={s.x} y2={COMPACT_BASELINE} stroke={c.stem} strokeWidth={9} strokeLinecap="round" />
               <circle cx={s.x} cy={s.top} r={s.r} fill={fill(s.slot)} />
             </g>
           ))
         : FULL_STEMS.map((s) => {
             const cy = s.top - 7;
-            const ringR = s.big ? 3.1 : 2.9;
+            const petalR = s.big ? 3.1 : 2.9;
             const centreR = s.big ? 4.3 : 4;
+            const col = fill(s.slot);
             return (
               <g key={s.x}>
-                <line
-                  x1={s.x}
-                  y1={s.top}
-                  x2={s.x}
-                  y2={baseline}
-                  stroke={c.stem}
-                  strokeWidth={2.6}
-                />
+                <line x1={s.x} y1={s.top} x2={s.x} y2={FULL_BASELINE} stroke={c.stem} strokeWidth={2.6} />
                 {HEAD_RING.map(([dx, dy], i) => (
-                  <circle key={i} cx={s.x + dx} cy={cy + dy} r={ringR} fill={fill(s.slot)} />
+                  <circle key={i} cx={s.x + dx} cy={cy + dy} r={petalR} fill={col} />
                 ))}
-                <circle cx={s.x} cy={cy} r={centreR} fill={fill(s.slot)} />
+                <circle cx={s.x} cy={cy} r={centreR} fill={col} />
               </g>
             );
           })}

@@ -5,15 +5,15 @@ export function Problem() {
     <section id="problem" className="bg-paper-sub relative overflow-hidden py-12 md:py-24">
       {/* Decorative botanical: vellugtende guldaks (Anthoxanthum odoratum),
           grayscale. Anchored to the CONTENT's right edge (not the viewport) so
-          it sits close to the pull-quote — its stem grazing the quote's right
-          edge rather than floating in its own margin lane. Bottom fade lets the
-          lower stem dissolve. Shown on xl+; text-only below. */}
+          it sits close to the pull-quote — just past its right edge, with a
+          little air between, rather than floating in its own margin lane.
+          Bottom fade lets the lower stem dissolve. Shown on xl+; text-only below. */}
       <img
         src="/illustrations/vellugtende-guldaks.webp"
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="hidden xl:block absolute left-[calc(50%+508px)] bottom-0 h-[86%] w-auto max-w-none grayscale opacity-90 pointer-events-none select-none [-webkit-mask-image:linear-gradient(to_top,transparent,#000_24%)] [mask-image:linear-gradient(to_top,transparent,#000_24%)]"
+        className="hidden xl:block absolute left-[calc(50%+576px)] bottom-0 h-[86%] w-auto max-w-none grayscale opacity-90 pointer-events-none select-none [-webkit-mask-image:linear-gradient(to_top,transparent,#000_24%)] [mask-image:linear-gradient(to_top,transparent,#000_24%)]"
       />
 
       <div className="wrap relative z-10">

@@ -3,15 +3,19 @@ import { Reveal } from "../utils";
 export function Problem() {
   return (
     <section id="problem" className="bg-paper-sub relative overflow-hidden py-12 md:py-24">
-      <svg className="absolute -right-[120px] top-1/2 -translate-y-1/2 w-[680px] opacity-30 pointer-events-none text-moss hidden md:block" viewBox="0 0 600 600" fill="none" aria-hidden="true">
-        <g stroke="currentColor" strokeWidth="1.1" fill="none" opacity="0.9">
-          <path d="M300 90C200 120 150 220 180 320c25 84 130 150 240 120 90-25 140-130 100-230C588 130 420 52 300 90Z" />
-          <path d="M300 150C230 172 195 240 215 312c18 64 100 112 182 92 70-18 108-100 78-176C530 178 410 124 300 150Z" />
-          <path d="M300 210C255 226 232 270 246 318c14 46 70 78 128 64 50-14 76-70 56-124C476 222 388 186 300 210Z" />
-          <path d="M300 268C272 278 258 304 268 332c8 28 44 46 80 38 32-9 48-44 36-78C460 274 352 250 300 268Z" />
-        </g>
-      </svg>
-      
+      {/* Decorative botanical: vellugtende guldaks (Anthoxanthum odoratum),
+          grayscale, in the clear lane to the right of the pull-quote. Anchored
+          to the bottom with air above the seed head, and a soft fade so the
+          lower stem dissolves into the section. Shown on xl+ where there's room;
+          below that the section is text-only. */}
+      <img
+        src="/illustrations/vellugtende-guldaks.webp"
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        className="hidden xl:block absolute right-8 bottom-0 h-[86%] w-auto max-w-none grayscale opacity-90 pointer-events-none select-none [-webkit-mask-image:linear-gradient(to_top,transparent,#000_24%)] [mask-image:linear-gradient(to_top,transparent,#000_24%)]"
+      />
+
       <div className="wrap relative z-10">
         <Reveal>
           <div className="mb-8 w-full md:mb-13">
@@ -37,8 +41,8 @@ export function Problem() {
           </Reveal>
           
           <Reveal delay={0.16}>
-            <p className="font-serif font-medium text-[1.18rem] leading-[1.45] sm:text-[clamp(1.4rem,2vw,1.75rem)] sm:leading-[1.3] tracking-tight text-moss-deep pl-5 sm:pl-6 border-l-2 border-rust py-1">
-              Naturgenopretning handler i dag ikke om at fastholde en bestemt tilstand, men om at genskabe naturlige processer, for eksempel græsning og naturlig hydrologi, og lade naturen udvikle sig derfra.<span className="hidden sm:inline"> Tilgangen til måling har kun delvis fulgt med. Vi måler det, der er det egentlige formål: at naturen kommer igen. Og vi dokumenterer hvornår, hvor meget, hvilke arter, og hvordan levestedet ændrer sig.</span>
+            <p className="font-serif font-medium text-[1.18rem] leading-[1.45] sm:text-[clamp(1.4rem,2vw,1.75rem)] sm:leading-[1.3] tracking-tight text-moss-deep pl-5 sm:pl-6 border-l-2 border-rust py-1 xl:max-w-[25rem]">
+              Naturgenopretning handler i dag ikke om at fastholde én tilstand, men om at genskabe naturlige processer — græsning, naturlig hydrologi — og lade naturen udvikle sig derfra. Målingen har kun delvis fulgt med. Vi måler det, der er det egentlige formål: hvilke arter der kommer, og hvordan levestedet udvikler sig.
             </p>
           </Reveal>
         </div>

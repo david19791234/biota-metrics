@@ -39,8 +39,8 @@ const METHODS: Method[] = [
   {
     n: "02",
     title: "Planter på prøvefeltet",
-    body: "På faste felter på 1 m² fotograferes og artsbestemmes planterne. Plantesammensætningen er en tidlig og pålidelig indikator.",
-    rest: "Forskning fra danske felter viser, at planterne alene forudsiger omkring halvdelen af den samlede artsrigdom på tværs af artsgrupper. Planterne tælles ikke bare, de vægtes efter, om de er hjemmehørende indikatorarter (de mest følsomme “stjernearter” tæller mest). Resultatet kan udtrykkes som et artsindeks i samme skala, som forvaltere kender fra de nationale naturtypevurderinger.",
+    body: "På faste prøvefelter registreres karplanternes artssammensætning og dækningsgrader.",
+    rest: "Vegetationen er en tidlig og pålidelig indikator: artssammensætningen integrerer levestedets nærings-, fugtigheds- og forstyrrelsesforhold over tid og forudsiger en stor del af den samlede artsrigdom på tværs af artsgrupper. Arterne vægtes efter følsomhed — hjemmehørende indikatorarter, og særligt de mest kræsne “stjernearter”, vejer tungest. Sammen med strukturmål omsættes registreringerne til et arts- og naturtilstandsindeks på en standardiseret skala, som forvaltere kender fra de nationale naturtypevurderinger.",
     icon: (
       <svg viewBox="0 0 56 56" fill="none" className="h-full w-auto block">
         <rect x="6" y="6" width="44" height="44" rx="2" stroke="currentColor" strokeWidth="2.2" />

@@ -32,7 +32,7 @@ export function Problem() {
           <Reveal delay={0.08}>
             <div className="space-y-4 sm:space-y-5 text-[1.05rem] leading-[1.55] sm:text-[1.12rem] sm:leading-[1.62] text-ink-soft">
               <p>
-                Den grønne trepart lægger op mod 400.000 hektar landbrugsjord om til skov, vådområder og natur. Statens platform MARS holder styr på hektarene og de forventede effekter på klima, vand og natur, men ikke på, om arterne faktisk er kommet.
+                Den grønne trepart lægger knap 400.000 hektar landbrugsjord om til skov, vådområder og natur. Statens platform MARS holder styr på hektarene og de forventede effekter på klima, vand og natur, men ikke på, om arterne faktisk er kommet.
               </p>
               <p>
                 For hektar er ikke det samme som biodiversitet. Der findes ingen fælles måling af, om arterne vender tilbage på de arealer, fondene køber og genopretter. Et areal kan være lagt om på papiret, længe før en eneste ny art har indfundet sig.
@@ -42,7 +42,7 @@ export function Problem() {
           
           <Reveal delay={0.16}>
             <p className="font-serif font-medium text-[1.18rem] leading-[1.45] sm:text-[clamp(1.4rem,2vw,1.75rem)] sm:leading-[1.3] tracking-tight text-moss-deep pl-5 sm:pl-6 border-l-2 border-rust py-1">
-              Naturgenopretning handler i dag ikke om at fastholde én tilstand, men om at genskabe naturlige processer — græsning, naturlig hydrologi — og lade naturen udvikle sig derfra. Målingen har kun delvis fulgt med. Vi måler det, der er det egentlige formål: hvilke arter der kommer, og hvordan levestedet udvikler sig.
+              Vi måler, om genopretningen lykkes. Det handler ikke kun om flere arter, for et artsfattigt sted kan stadig være værdifuld natur. Det handler om de rigtige: at de hjemmehørende, følsomme arter indfinder sig, og at levestederne udvikler sig mod en naturlig tilstand.
             </p>
           </Reveal>
         </div>

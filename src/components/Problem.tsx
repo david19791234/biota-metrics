@@ -42,7 +42,7 @@ export function Problem() {
           
           <Reveal delay={0.16}>
             <p className="font-serif font-medium text-[1.18rem] leading-[1.45] sm:text-[clamp(1.4rem,2vw,1.75rem)] sm:leading-[1.3] tracking-tight text-moss-deep pl-5 sm:pl-6 border-l-2 border-rust py-1 text-pretty">
-              Vi måler, om genopretningen lykkes. Det handler ikke kun om flere arter, for et artsfattigt sted kan stadig være værdifuld natur. Det handler om de rigtige: at de hjemmehørende, følsomme arter indfinder sig, og at levestederne udvikler sig mod en naturlig tilstand.
+              Vi måler, om genopretningen lykkes, om de hjemmehørende, følsomme arter vender tilbage, og om levestederne udvikler sig mod en naturlig tilstand.
             </p>
           </Reveal>
         </div>

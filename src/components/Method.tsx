@@ -231,7 +231,7 @@ export function Method() {
                 </Reveal>
                 <Reveal delay={0.16}>
                   <div className="mt-9 hidden lg:flex items-center gap-4">
-                    <span className="font-mono text-[12px] tracking-[0.12em] text-ink-faint tabular-nums">
+                    <span className="font-mono text-[12px] tracking-[0.14em] text-ink-faint tabular-nums">
                       {String(current + 1).padStart(2, "0")} <span className="text-line">/</span> {String(N).padStart(2, "0")}
                     </span>
                     <div className="h-[2px] w-[120px] rounded-full bg-line-soft overflow-hidden">

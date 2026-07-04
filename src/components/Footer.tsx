@@ -10,7 +10,7 @@ export function Footer() {
           <div className="font-mono text-[12.5px] text-ink-faint leading-[1.9] text-left md:text-right">
             København, Danmark<br />
             CVR [xx xx xx xx]<br />
-            <a href="mailto:kontakt@biotametrics.com" className="inline-block py-2 -my-2 sm:py-0 sm:my-0 text-ink-soft no-underline border-b border-line hover:text-ink transition-colors">
+            <a href="mailto:kontakt@biotametrics.com" className="inline-block py-2 -my-2 sm:py-0 sm:my-0 text-ink-soft no-underline border-b border-line hover:text-ink transition-colors duration-200 rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-moss-deep focus-visible:ring-offset-2">
               kontakt@biotametrics.com
             </a><br />
             © 2026 Biota Metrics

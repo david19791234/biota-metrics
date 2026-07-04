@@ -326,7 +326,7 @@ function ReferenceView() {
       <div className="bg-paper border border-line rounded-[8px] p-5 md:p-7">
         <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft font-medium mb-4 md:mb-5">Udvikling mod reference</div>
         <ReferenceChart />
-        <div className="mt-5 md:mt-6 pt-3 border-t border-line-soft font-mono text-[10px] text-ink-faint">Illustration.</div>
+        <div className="mt-5 md:mt-6 pt-3 md:pt-4 border-t border-line-soft font-mono text-[10px] text-ink-faint">Illustration.</div>
       </div>
     </>
   );
@@ -370,7 +370,7 @@ function ExportView() {
               <div key={s.label}>
                 {i > 0 && <div className="h-px bg-line-soft my-5" />}
                 <div className="flex flex-col gap-2">
-                  <span className="font-sans font-semibold text-[11px] uppercase tracking-[0.06em] text-[#8ba48e]">{s.label}</span>
+                  <span className="font-sans font-semibold text-[11px] uppercase tracking-[0.06em] text-moss">{s.label}</span>
                   <span className="font-mono font-semibold text-[16px] text-ink">{s.value}</span>
                 </div>
               </div>
@@ -503,7 +503,7 @@ function CoachmarkMorph({ progress }: { progress: MotionValue<number> }) {
       {/* sage focus glow on the initial point — the "active" moment */}
       <motion.span
         aria-hidden="true"
-        className="absolute right-[-5px] top-1/2 size-6 rounded-full bg-[#8ba48e]"
+        className="absolute right-[-5px] top-1/2 size-6 rounded-full bg-sage"
         style={{ opacity: glowOpacity, scale: glowScale, y: "-50%", filter: "blur(6px)" }}
       />
       {/* the morphing surface: point → capsule → callout */}
@@ -513,8 +513,8 @@ function CoachmarkMorph({ progress }: { progress: MotionValue<number> }) {
       >
         <div className="absolute inset-y-0 right-0 flex w-[180px] items-center gap-2.5 px-3.5">
           <motion.span className="relative flex size-2 shrink-0" aria-hidden="true" style={{ opacity: dotOpacity }}>
-            <span className="absolute inline-flex h-full w-full rounded-full bg-[#8ba48e] opacity-80 animate-ping" />
-            <span className="relative inline-flex size-2 rounded-full bg-[#8ba48e]" />
+            <span className="absolute inline-flex h-full w-full rounded-full bg-sage opacity-80 animate-ping" />
+            <span className="relative inline-flex size-2 rounded-full bg-sage" />
           </motion.span>
           <motion.span
             className="text-[12.5px] font-medium leading-snug tracking-tight text-white"
@@ -573,7 +573,7 @@ function DashboardApp() {
                   type="button"
                   aria-current={active ? "page" : undefined}
                   onClick={() => select(item.id)}
-                  className={`relative shrink-0 cursor-pointer text-left whitespace-nowrap rounded-[5px] px-3 py-2 text-[13px] transition-[color,background-color] duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8ba48e]/55 before:content-[''] before:absolute before:left-0 before:top-1.5 before:bottom-1.5 before:w-0.5 before:rounded-full before:bg-[#8ba48e] before:opacity-0 before:transition-opacity before:duration-200 ${
+                  className={`relative shrink-0 cursor-pointer text-left whitespace-nowrap rounded-[5px] px-3 py-2 text-[13px] transition-[color,background-color] duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage/55 before:content-[''] before:absolute before:left-0 before:top-1.5 before:bottom-1.5 before:w-0.5 before:rounded-full before:bg-sage before:opacity-0 before:transition-opacity before:duration-200 ${
                     active
                       ? "bg-white/10 text-white font-medium before:opacity-100"
                       : "text-[#a0a89f] hover:text-white hover:bg-white/[0.06] hover:before:opacity-60"
@@ -639,8 +639,8 @@ function DashboardApp() {
                 {/* desktop beak points right, toward the sidebar rail */}
                 <span className="hidden lg:block absolute -right-[5px] top-1/2 -translate-y-1/2 size-[11px] rotate-45 bg-coach" aria-hidden="true" />
                 <span className="relative mt-[3px] flex size-2 shrink-0" aria-hidden="true">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#8ba48e] opacity-80 animate-ping" />
-                  <span className="relative inline-flex size-2 rounded-full bg-[#8ba48e]" />
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-sage opacity-80 animate-ping" />
+                  <span className="relative inline-flex size-2 rounded-full bg-sage" />
                 </span>
                 <span className="text-[12.5px] leading-snug font-medium tracking-tight">Klik dig gennem de seks visninger</span>
               </div>
@@ -660,11 +660,11 @@ export function Dashboard() {
     <section id="dashboard" className="py-12 md:py-24 bg-paper-sub overflow-hidden">
       <div className="wrap">
         <Reveal>
-          <div className="mb-8 w-full md:mb-10">
+          <div className="mb-8 w-full md:mb-13">
             <span className="font-mono text-xs tracking-[0.14em] uppercase text-moss font-medium mb-4 block">
               04 · Platform
             </span>
-            <h2 className="font-serif font-medium text-[clamp(2.2rem,3.8vw,3.2rem)] leading-[1.06] tracking-tight max-w-[18em]">
+            <h2 className="font-serif font-medium text-[clamp(2rem,3.6vw,3rem)] leading-[1.06] tracking-tight max-w-[16em]">
               Monitoreringen, samlet i ét dashboard
             </h2>
           </div>

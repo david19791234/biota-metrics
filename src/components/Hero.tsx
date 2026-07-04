@@ -26,14 +26,14 @@ export function Hero() {
                 <a
                   href="#metode"
                   onClick={smoothScroll}
-                  className="font-sans text-[15px] font-medium px-7 py-3.5 border border-ink transition-colors duration-200 bg-ink text-paper hover:bg-transparent hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-moss-deep focus-visible:ring-offset-2 inline-flex items-center justify-center sm:justify-start w-full sm:w-auto gap-2 group"
+                  className="font-sans text-[15px] font-medium px-7 py-3.5 border border-ink transition-[color,background-color,border-color,transform] duration-200 bg-ink text-paper hover:bg-transparent hover:text-ink active:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-moss-deep focus-visible:ring-offset-2 inline-flex items-center justify-center sm:justify-start w-full sm:w-auto gap-2 group"
                 >
-                  Se datakilderne <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  Se datakilderne <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
                 </a>
                 <a
                   href="#kontakt"
                   onClick={smoothScroll}
-                  className="font-sans text-[15px] font-medium px-7 py-3.5 border border-line-soft transition-colors duration-200 bg-transparent text-ink hover:border-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-moss-deep focus-visible:ring-offset-2 inline-flex items-center justify-center sm:justify-start w-full sm:w-auto gap-2"
+                  className="font-sans text-[15px] font-medium px-7 py-3.5 border border-line-soft transition-[color,background-color,border-color,transform] duration-200 bg-transparent text-ink hover:border-ink active:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-moss-deep focus-visible:ring-offset-2 inline-flex items-center justify-center sm:justify-start w-full sm:w-auto gap-2"
                 >
                   Kontakt os
                 </a>
@@ -42,9 +42,9 @@ export function Hero() {
           </div>
 
           <Reveal delay={0.16}>
-            <div className="border border-line bg-paper-sub rounded-[3px] px-5 pt-5 pb-5 sm:px-6 sm:pt-6 sm:pb-7 relative">
+            <div className="border border-line bg-paper-sub rounded-[3px] px-5 py-5 sm:px-6 sm:pt-6 sm:pb-7 relative">
               <div className="mb-3">
-                <span className="font-mono text-[11px] tracking-[0.1em] uppercase text-ink-soft font-medium">Udvikling mod reference</span>
+                <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-soft font-medium">Udvikling mod reference</span>
               </div>
               <motion.div 
                 initial="hidden"

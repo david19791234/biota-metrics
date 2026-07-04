@@ -130,7 +130,7 @@ function AccessScreen({ onUnlock }: { onUnlock: () => void }) {
               inputMode="numeric"
               autoComplete="off"
               aria-label={`Ciffer ${i + 1} af 4`}
-              className={`size-14 rounded-[10px] border bg-paper-sub text-center font-mono text-[1.5rem] text-ink caret-moss outline-none transition-[border-color,box-shadow] duration-150 focus:ring-2 focus:ring-[#8ba48e]/40 ${
+              className={`size-14 rounded-[10px] border bg-paper-sub text-center font-mono text-[1.5rem] text-ink caret-moss outline-none transition-[border-color,box-shadow] duration-150 focus:ring-2 focus:ring-sage/55 ${
                 error ? "border-rust" : "border-line focus:border-moss"
               }`}
             />

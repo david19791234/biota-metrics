@@ -4,7 +4,7 @@ export function TrustWhyContact() {
   return (
     <>
       <section id="om" className="py-12 md:py-24">
-        <div className="wrap border-t-2 border-transparent">
+        <div className="wrap">
           <Reveal>
             <div className="mb-8 w-full md:mb-13">
               <span className="font-mono text-xs tracking-[0.14em] uppercase text-moss font-medium mb-4 block">
@@ -71,11 +71,11 @@ export function TrustWhyContact() {
 
       <section id="kontakt" className="py-12 md:py-24 text-center">
         <div className="wrap">
-          <span className="font-mono text-xs tracking-[0.14em] uppercase text-moss font-medium mb-5 block">
+          <span className="font-mono text-xs tracking-[0.14em] uppercase text-moss font-medium mb-4 block">
             Kontakt
           </span>
           <Reveal>
-            <h2 className="font-serif font-medium text-[clamp(1.85rem,4vw,3.3rem)] leading-[1.05] tracking-tight mb-6">
+            <h2 className="font-serif font-medium text-[clamp(1.85rem,4vw,3.3rem)] leading-[1.05] tracking-tight mb-6 text-balance">
               Har I et område, der skal måles?
             </h2>
           </Reveal>
@@ -87,7 +87,7 @@ export function TrustWhyContact() {
           <Reveal delay={0.16}>
             <a
               href="mailto:kontakt@biotametrics.com"
-              className="font-sans text-[14px] sm:text-[15px] text-ink border border-ink px-7 py-3.5 inline-flex items-center justify-center sm:justify-start w-full sm:w-auto max-w-full gap-3 transition-colors duration-200 font-medium hover:bg-ink hover:text-paper focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-moss-deep group"
+              className="font-sans text-[14px] sm:text-[15px] text-ink border border-ink px-7 py-3.5 inline-flex items-center justify-center sm:justify-start w-full sm:w-auto max-w-full gap-3 transition-[color,background-color,transform] duration-200 font-medium hover:bg-ink hover:text-paper active:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper group"
             >
               kontakt@biotametrics.com
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">

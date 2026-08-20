@@ -6,17 +6,18 @@ import { BiotaMark } from "./Logo";
 /* ------------------------------------------------------------------ *
  * Section 04 — Dashboard & rapportering
  * A click-driven mock of the Biota Metrics product (dark sidebar,
- * six switchable views) built to read like a real SaaS screenshot.
+ * seven switchable views) built to read like a real SaaS screenshot.
  * ------------------------------------------------------------------ */
 
-type ViewId = "portefolje" | "kpi" | "datakilder" | "reference" | "rapport" | "integrationer";
+type ViewId = "portefolje" | "kpi" | "datakilder" | "protokol" | "reference" | "rapport" | "integrationer";
 
 const NAV: { id: ViewId; label: string }[] = [
   { id: "portefolje", label: "Portefølje" },
   { id: "kpi", label: "Projekt-KPI'er" },
   { id: "datakilder", label: "Datakilder" },
+  { id: "protokol", label: "Protokol" },
   { id: "reference", label: "Referenceniveau" },
-  { id: "rapport", label: "Afrapportering" },
+  { id: "rapport", label: "Eksport" },
   { id: "integrationer", label: "Integrationer" },
 ];
 
@@ -27,9 +28,6 @@ const IconChevron = () => (
 const IconArrowUp = () => (
   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="6" /><polyline points="6 12 12 6 18 12" /></svg>
 );
-const IconFile = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><line x1="10" y1="9" x2="8" y2="9" /></svg>
-);
 const IconCheck = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
 );
@@ -39,9 +37,21 @@ const VIEW_TITLE: Record<ViewId, string> = {
   portefolje: "Portefølje",
   kpi: "Engdal Oversigt",
   datakilder: "Resultater pr. datakilde",
+  protokol: "Protokol",
   reference: "Fremdrift mod reference",
-  rapport: "Eksportér rapport",
+  rapport: "Eksport",
   integrationer: "Systemintegrationer",
+};
+
+/* --- section heading above the dashboard, one per view ------------------ */
+const SECTION_HEADING: Record<ViewId, string> = {
+  portefolje: "Monitoreringen, samlet i ét dashboard",
+  kpi: "Projektets tilstand og fremdrift",
+  datakilder: "Hvad hver datakilde fandt",
+  protokol: "Samme metode, hver gang",
+  reference: "Fra baseline mod referenceniveau",
+  rapport: "Validerede data, klar til eksport",
+  integrationer: "Tallene lander i fondens egne systemer",
 };
 
 const heading = "font-sans font-semibold text-ink text-[21px] md:text-[24px] tracking-tight leading-none";
@@ -230,7 +240,85 @@ function SourcesView() {
 }
 
 /* ====================================================================== *
- * VIEW 4 — Fremdrift mod reference (line chart, mirrors the hero chart)
+ * VIEW 4 — Protokol
+ * ====================================================================== */
+const PROTOCOLS = [
+  {
+    label: "FELTPROTOKOL (FÆLLES)",
+    title: "Biota Metrics feltprotokol v1.0",
+    sub: "Samme metode på alle arealer: faste punkter, faste ruter, faste intervaller. Valideret med videnspartnere.",
+    tag: "Låst",
+    tone: "muted",
+  },
+  {
+    label: "FONDENS IMPACT-PROTOKOL",
+    title: "Nordisk Naturarv · v2.1",
+    sub: "Vægtning af indikatorer, målstruktur og rapportformat. Ændringer godkendes af fondens biolog.",
+    tag: "Styres af fonden",
+    tone: "active",
+  },
+] as const;
+
+const PROCESS_STEPS = ["Felt", "Analyse", "AI-behandling efter fondens protokol", "Faglig review", "Levering"] as const;
+
+function ProtokolView() {
+  return (
+    <>
+      <div className="flex items-center justify-between gap-4 mb-7 md:mb-9">
+        <h3 className={heading}>Protokol</h3>
+        <span className={chip}>Feltprotokol v1.0 · Låst</span>
+      </div>
+
+      {/* Two protocols: the shared field protocol (locked) and the fund's own impact protocol */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+        {PROTOCOLS.map((p) => (
+          <div key={p.label} className="bg-paper border border-line rounded-[8px] p-5 md:p-7 flex flex-col gap-3 md:gap-4 shadow-[0_1px_2px_-1px_rgba(26,33,24,0.08),0_2px_6px_-1px_rgba(26,33,24,0.05)]">
+            <div className="font-mono text-[11px] tracking-[0.14em] text-ink-soft font-medium">{p.label}</div>
+            <div className="font-sans font-semibold text-[20px] text-ink tracking-tight">{p.title}</div>
+            <p className="text-[14px] text-ink-soft leading-[1.55]">{p.sub}</p>
+            <div className="mt-auto">
+              <span className={`inline-block rounded-[4px] px-2.5 py-1 text-[11.5px] font-medium whitespace-nowrap ${p.tone === "active" ? "bg-moss text-white" : "bg-paper-mute text-ink-soft"}`}>
+                {p.tag}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Process strip — field data flows up through the fund's protocol, with human review before delivery */}
+      <div className="mt-4 md:mt-5 bg-paper border border-line rounded-[8px] px-4 md:px-5 py-3.5">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[11px] uppercase tracking-[0.14em] font-medium">
+          {PROCESS_STEPS.map((step, i) => (
+            <span key={step} className="inline-flex items-center gap-x-3">
+              {i > 0 && <span aria-hidden="true" className="text-ink-faint">→</span>}
+              {step === "Faglig review" ? (
+                <span className="bg-moss/10 text-moss-deep rounded-[4px] px-2 py-1">{step}</span>
+              ) : (
+                <span className="text-ink-soft">{step}</span>
+              )}
+            </span>
+          ))}
+        </div>
+        <div className="mt-3 pt-3 border-t border-line-soft font-mono text-[10px] text-ink-faint">
+          Automatisk artsgenkendelse under konfidensgrænsen sendes til manuel gennemgang.
+        </div>
+      </div>
+
+      {/* Status — same pattern as the SmartSimple message in Integrationer */}
+      <div className="mt-4 md:mt-5 bg-paper-sub border border-line-soft rounded-[8px] p-3 flex items-center gap-3">
+        <div className="size-6 rounded-full bg-moss/10 flex items-center justify-center shrink-0" aria-hidden="true">
+          <span className="size-2 rounded-full bg-moss" />
+        </div>
+        <p className="text-[12px] md:text-[13px] text-ink-soft leading-snug">
+          <strong className="font-semibold text-ink-soft">Forslag til vægtningsændring (rødlistearter)</strong> afventer godkendelse hos Fonden Nordisk Naturarv.
+        </p>
+      </div>
+    </>
+  );
+}
+
+/* ====================================================================== *
+ * VIEW 5 — Fremdrift mod reference (line chart, mirrors the hero chart)
  * ====================================================================== */
 /* Wide viewBox keeps the in-chart labels close to 1:1 with the rest of the UI
    (a narrow viewBox scaled up made them read oversized). */
@@ -311,7 +399,8 @@ function ReferenceChart() {
         </g>
 
         <motion.g variants={{ hidden: { opacity: 0, y: 4 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.75, ease: EASE } } }}>
-          <text x={REF_PTS[0][0] + 14} y={REF_PTS[0][1] + 4} textAnchor="start" className="font-sans fill-moss-deep text-[11.5px] font-medium tracking-[0.06em]">BASELINE</text>
+          {/* Sits clear below the curve — the label's cap-height would otherwise touch the line as it rises. */}
+          <text x={REF_PTS[0][0] + 14} y={REF_PTS[0][1] + 16} textAnchor="start" className="font-sans fill-moss-deep text-[11.5px] font-medium tracking-[0.06em]">BASELINE</text>
           <text x="690" y={REF_TOP_Y - 10} textAnchor="end" className="font-sans fill-ink-soft text-[11.5px] font-medium tracking-[0.06em]">REFERENCENIVEAU</text>
         </motion.g>
       </svg>
@@ -333,57 +422,61 @@ function ReferenceView() {
 }
 
 /* ====================================================================== *
- * VIEW 5 — Eksportér rapport
+ * VIEW 6 — Eksport
  * ====================================================================== */
-const STATS = [
-  { label: "Samlet artsrigdom", value: "73 arter verificeret" },
-  { label: "Fremdrift mod reference", value: "69%" },
-  { label: "Nationale rødlistearter", value: "3 arter / 1 tilkommet" },
-  { label: "Naturtype & struktur", value: "God tilstand (61/100)" },
-];
+const EXPORTS = [
+  { title: "Engdal · Årsdata, år 3", sub: "Artsrigdom 73 · Fremdrift 69 % · Rødlistearter 3 · Naturtilstand 61/100", to: "SmartSimple (GMS)", status: "Eksporteret", tone: "active" },
+  { title: "Engdal · ESG-nøgletal", sub: "Mappet til fondens CSRD-datapunkter", to: "Position Green", status: "Klar til eksport", tone: "muted" },
+  { title: "Engdal · Felt- og analyserapport", sub: "PDF til bestyrelsesoplæg", to: "Download", status: "Klar", tone: "muted" },
+  { title: "Engdal · Sæsondata, august", sub: "Lyd og billeder fra seneste feltrunde", to: "SmartSimple (GMS)", status: "Afventer faglig review", tone: "muted" },
+] as const;
 
 function ExportView() {
   return (
     <>
-      <h3 className={`${heading} mb-7 md:mb-9`}>Eksportér rapport</h3>
-      <div className="bg-paper border border-line rounded-[8px] overflow-hidden flex flex-col lg:flex-row">
-        <div className="flex-1 p-6 md:p-8 lg:p-10 flex flex-col gap-6 lg:gap-8">
-          <div className="size-10 bg-paper-sub rounded-[8px] flex items-center justify-center text-ink-soft shrink-0">
-            <IconFile />
-          </div>
-          <div className="flex flex-col gap-2.5">
-            <h4 className="font-sans font-semibold text-[20px] text-ink tracking-tight">Engdal Årsrapport</h4>
-            <p className="text-[14px] text-ink-soft leading-[1.55] max-w-[340px]">
-              De løbende markdata er nu valideret, vægtet efter indikatorværdi og struktureret, klar til at indgå i jeres miljøafrapportering og bestyrelsesoplæg.
-            </p>
-          </div>
-          <button type="button" className="self-start cursor-pointer bg-moss-deep text-white rounded-[6px] px-5 py-2.5 text-[14px] font-medium shadow-[0_1px_2px_rgba(26,33,24,0.20)] transition-[background-color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-moss hover:-translate-y-px hover:shadow-[0_2px_8px_rgba(26,33,24,0.24)] hover:duration-150 active:translate-y-0 active:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-moss-deep focus-visible:ring-offset-2">
-            <span className="sm:hidden">Download rapport</span>
-            <span className="hidden sm:inline">Download felt- og analyserapport</span>
-          </button>
-        </div>
+      <div className="flex items-center justify-between gap-4 mb-7 md:mb-9">
+        <h3 className={heading}>Eksport</h3>
+        <span className="hidden sm:inline-flex bg-paper-sub border border-line rounded-[6px] px-3 py-2 text-[13px] font-medium text-ink whitespace-nowrap">Formater: API · CSV · PDF</span>
+      </div>
 
-        <div className="lg:w-[300px] xl:w-[360px] shrink-0 bg-paper-sub/60 border-t lg:border-t-0 lg:border-l border-line p-6 flex flex-col gap-5">
-          <div className="font-sans font-semibold text-[11px] uppercase tracking-[0.08em] text-ink-faint">Nøgletal klar til eksport:</div>
-          <div className="flex flex-col">
-            {STATS.map((s, i) => (
-              <div key={s.label}>
-                {i > 0 && <div className="h-px bg-line-soft my-5" />}
-                <div className="flex flex-col gap-2">
-                  <span className="font-sans font-semibold text-[11px] uppercase tracking-[0.06em] text-moss">{s.label}</span>
-                  <span className="font-mono font-semibold text-[16px] text-ink">{s.value}</span>
-                </div>
-              </div>
-            ))}
+      {/* One row per deliverable: package, recipient, status */}
+      <div className="bg-paper border border-line rounded-[8px] overflow-hidden">
+        {EXPORTS.map((e) => (
+          <div key={e.title} className="flex items-center justify-between gap-4 px-4 py-3 border-b border-line-soft last:border-0">
+            <div className="min-w-0 flex-1">
+              <div className="font-sans font-medium text-[14px] text-ink leading-tight">{e.title}</div>
+              <div className="text-[12px] text-ink-faint leading-tight mt-0.5">{e.sub}</div>
+            </div>
+            <div className="w-[150px] shrink-0 text-[13px] text-ink-soft">{e.to}</div>
+            {/* Fixed column so the status chips (42–142px wide) keep the recipients in line */}
+            <div className="w-[150px] shrink-0 flex justify-end">
+              <span
+                className={`inline-block rounded-[4px] px-2.5 py-1 text-[11.5px] font-medium whitespace-nowrap ${
+                  e.tone === "active" ? "bg-moss text-white" : "bg-paper-mute text-ink-soft"
+                }`}
+              >
+                {e.status}
+              </span>
+            </div>
           </div>
+        ))}
+      </div>
+
+      {/* Status — same pattern as the SmartSimple message in Integrationer */}
+      <div className="mt-4 md:mt-5 bg-paper-sub border border-line-soft rounded-[8px] p-3 flex items-center gap-3">
+        <div className="size-6 rounded-full bg-moss/10 flex items-center justify-center text-moss shrink-0">
+          <IconCheck />
         </div>
+        <p className="text-[12px] md:text-[13px] text-ink-soft leading-snug">
+          <strong className="font-semibold text-ink-soft">Engdal · Årsdata eksporteret til SmartSimple i dag kl. 09:14.</strong> Afrapporteringen færdiggøres i fondens eget system.
+        </p>
       </div>
     </>
   );
 }
 
 /* ====================================================================== *
- * VIEW 6 — Systemintegrationer
+ * VIEW 7 — Systemintegrationer
  * ====================================================================== */
 const INTEGRATIONS = [
   { initials: "SS", name: "SmartSimple", sub: "Bevillingssystem (GMS)", active: true },
@@ -446,6 +539,7 @@ function ViewBody({ view }: { view: ViewId }): ReactNode {
     case "portefolje": return <PortfolioView />;
     case "kpi": return <KpiView />;
     case "datakilder": return <SourcesView />;
+    case "protokol": return <ProtokolView />;
     case "reference": return <ReferenceView />;
     case "rapport": return <ExportView />;
     case "integrationer": return <IntegrationsView />;
@@ -520,7 +614,7 @@ function CoachmarkMorph({ progress }: { progress: MotionValue<number> }) {
             className="text-[12.5px] font-medium leading-snug tracking-tight text-white"
             style={{ opacity: textOpacity, x: textX }}
           >
-            Klik dig gennem de seks visninger
+            Klik dig gennem de syv visninger
           </motion.span>
         </div>
       </motion.div>
@@ -534,13 +628,16 @@ function CoachmarkMorph({ progress }: { progress: MotionValue<number> }) {
   );
 }
 
-function DashboardApp() {
-  const [view, setView] = useState<ViewId>("portefolje");
+function DashboardApp({ view, shownView, isDesktop, onSelect }: {
+  view: ViewId;
+  shownView: ViewId;
+  isDesktop: boolean;
+  onSelect: (id: ViewId) => void;
+}) {
   const [hintOn, setHintOn] = useState(true);
   const reduce = useReducedMotion();
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
   const select = (id: ViewId) => {
-    setView(id);
+    onSelect(id);
     setHintOn(false);
   };
 
@@ -548,9 +645,6 @@ function DashboardApp() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ["start 0.75", "start 0.28"] });
   const morph = useSpring(scrollYProgress, { stiffness: 150, damping: 32, restDelta: 0.001 });
-
-  // Below lg the dashboard collapses to just the Portefølje view (the sidebar nav is hidden).
-  const shownView = isDesktop ? view : "portefolje";
 
   return (
     <div ref={wrapRef} className="relative w-full">
@@ -642,7 +736,7 @@ function DashboardApp() {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-sage opacity-80 animate-ping" />
                   <span className="relative inline-flex size-2 rounded-full bg-sage" />
                 </span>
-                <span className="text-[12.5px] leading-snug font-medium tracking-tight">Klik dig gennem de seks visninger</span>
+                <span className="text-[12.5px] leading-snug font-medium tracking-tight">Klik dig gennem de syv visninger</span>
               </div>
             </motion.div>
           )}
@@ -655,6 +749,12 @@ function DashboardApp() {
 export function Dashboard() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.15 });
+  const [view, setView] = useState<ViewId>("portefolje");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+  // Below lg the dashboard collapses to just the Portefølje view (the sidebar nav is
+  // hidden), so the heading follows the view that is actually on screen.
+  const shownView = isDesktop ? view : "portefolje";
 
   return (
     <section id="dashboard" className="py-12 md:py-24 bg-paper-sub overflow-hidden">
@@ -664,8 +764,10 @@ export function Dashboard() {
             <span className="font-mono text-xs tracking-[0.14em] uppercase text-moss font-medium mb-4 block">
               04 · Platform
             </span>
-            <h2 className="font-serif font-medium text-[clamp(2rem,3.6vw,3rem)] leading-[1.06] tracking-tight max-w-[16em]">
-              Monitoreringen, samlet i ét dashboard
+            {/* Follows the active view. The measure is 17em rather than 16em so the two
+                longest headings (16.21em) stay on one line on desktop instead of wrapping. */}
+            <h2 className="font-serif font-medium text-[clamp(2rem,3.6vw,3rem)] leading-[1.06] tracking-tight max-w-[17em]">
+              {SECTION_HEADING[shownView]}
             </h2>
           </div>
         </Reveal>
@@ -676,10 +778,7 @@ export function Dashboard() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: EASE, delay: 0.08 }}
         >
-          <DashboardApp />
-          <p className="mt-4 text-center font-mono text-[10.5px] tracking-wide text-ink-faint">
-            Illustrativ demo — tallene er fiktive eksempler.
-          </p>
+          <DashboardApp view={view} shownView={shownView} isDesktop={isDesktop} onSelect={setView} />
         </motion.div>
       </div>
     </section>
